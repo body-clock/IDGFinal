@@ -455,6 +455,10 @@ Prefab:
       propertyPath: tpDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1568677453609290, guid: a945b8931220f1d4dbace82c77665b87, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a945b8931220f1d4dbace82c77665b87, type: 2}
   m_IsPrefabParent: 0
@@ -581,6 +585,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114724229534728884, guid: 7b832a657d2b6ab4b9992e5d420832e1,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1893735841}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b832a657d2b6ab4b9992e5d420832e1, type: 2}
   m_IsPrefabParent: 0
@@ -668,6 +677,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1629276960}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1893735841 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1568677453609290, guid: a945b8931220f1d4dbace82c77665b87,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192285029}
 --- !u!1 &1913782244
 GameObject:
   m_ObjectHideFlags: 0
