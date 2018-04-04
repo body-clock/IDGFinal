@@ -67,6 +67,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1579322816850214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4961289330127642}
+  - component: {fileID: 65298190650684644}
+  m_Layer: 0
+  m_Name: FOV
+  m_TagString: FOV
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4173965930278506
 Transform:
   m_ObjectHideFlags: 1
@@ -79,6 +95,7 @@ Transform:
   m_Children:
   - {fileID: 4664796568411588}
   - {fileID: 4988956608344424}
+  - {fileID: 4961289330127642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,6 +111,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4173965930278506}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4961289330127642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579322816850214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4173965930278506}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4988956608344424
 Transform:
@@ -246,6 +276,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!65 &65298190650684644
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579322816850214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.95, y: 1.02, z: 2.81}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114724229534728884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   dir: 1
+  player: {fileID: 0}
+  currentState: 0
 --- !u!135 &135783817073711538
 SphereCollider:
   m_ObjectHideFlags: 1

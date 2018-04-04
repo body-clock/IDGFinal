@@ -7,7 +7,10 @@ public class EnemyAI : MonoBehaviour
 {
 
 	public float speed;
+	public float rotSpeed;
+	
 	public float dir = 1;
+	public float maxRotation;
 
 	public GameObject player;
 
@@ -23,13 +26,13 @@ public class EnemyAI : MonoBehaviour
 	void Start()
 	{	
 		speed = 5f;
+		rotSpeed = 1f;
+		maxRotation = 45f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		//transform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed);
-		
+			
 		CheckDistance();
 
 		switch (currentState)
@@ -62,12 +65,29 @@ public class EnemyAI : MonoBehaviour
 		//follow player
 		Vector3 localPosition = player.transform.position - transform.position;
 		localPosition = localPosition.normalized;
-		transform.Translate(localPosition.x * Time.deltaTime * speed, localPosition.y * Time.deltaTime * speed, localPosition.z * Time.deltaTime * speed);
+		transform.Translate(localPosition.x * Time.deltaTime * speed, 0, localPosition.z * Time.deltaTime * speed);
+		transform.LookAt(player.transform);
+		transform.LookAt(2 * transform.position - player.transform.position);
 	}
 	
 	void Idle()
 	{
-		//rotate in place
+		
+		Vector3 homePos = new Vector3(-.5f, 2.5f, -18);
+
+		if (transform.position.z != homePos.z)
+		{
+			//go home
+			float step = speed * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, homePos, step);
+		}
+		else
+		{
+			//rotate in place and move back and forth
+			transform.rotation = Quaternion.Euler(0f, maxRotation * Mathf.Sin(Time.time * rotSpeed), 0f);
+			transform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
+		}
+		
 	}
 
 	void Damaging()
@@ -97,4 +117,6 @@ public class EnemyAI : MonoBehaviour
 			currentState = States.damaging;
 		}
 	}
+	
+
 }
