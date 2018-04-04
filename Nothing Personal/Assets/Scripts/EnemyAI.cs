@@ -93,6 +93,7 @@ public class EnemyAI : MonoBehaviour
 	void Damaging()
 	{
 		//deal damage to player
+		HealthManager.instance.health-=.3f;
 	}
 
 	void CheckDistance()
