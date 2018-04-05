@@ -122,7 +122,7 @@ public class EnemyAI : MonoBehaviour
 			currentState = States.pursuit;
 		}*/
 
-		if (dist < 5f)
+		if (dist < 2f)
 		{
 			currentState = States.damaging;
 		}
