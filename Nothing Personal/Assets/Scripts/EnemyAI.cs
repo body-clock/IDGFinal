@@ -97,7 +97,7 @@ public class EnemyAI : MonoBehaviour
 		{
 			//rotate in place and move back and forth
 			transform.rotation = Quaternion.Euler(0f, maxRotation * Mathf.Sin(Time.time * rotSpeed), 0f);
-			transform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
+			//stransform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
 		}
 		
 	}
@@ -117,10 +117,10 @@ public class EnemyAI : MonoBehaviour
 			currentState = States.idle;
 		}
 
-		if (dist < 10f)
+		/*if (dist < 10f)
 		{
 			currentState = States.pursuit;
-		}
+		}*/
 
 		if (dist < 5f)
 		{
