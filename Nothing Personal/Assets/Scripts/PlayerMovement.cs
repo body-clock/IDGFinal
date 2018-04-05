@@ -25,12 +25,9 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if (col.gameObject.CompareTag("FOV"))
 		{
-			
-			Debug.Log("in FOV");
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				transform.Translate(0,0,tpDistance);
-				Debug.Log("tp");
 			}
 		}
 	}

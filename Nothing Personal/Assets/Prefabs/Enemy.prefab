@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 54705777981614204}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4961289330127642}
   - component: {fileID: 65298190650684644}
+  - component: {fileID: 114127855259756548}
   m_Layer: 0
   m_Name: FOV
   m_TagString: FOV
@@ -89,8 +90,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413241514468262}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 2.5, z: -18}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4664796568411588}
@@ -119,8 +120,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579322816850214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.66}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.46}
+  m_LocalScale: {x: 2.07, y: 1, z: 2.48}
   m_Children: []
   m_Father: {fileID: 4173965930278506}
   m_RootOrder: 2
@@ -288,6 +289,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 1.02, z: 2.81}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114127855259756548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579322816850214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e580abb38e49f4e9070e1afa4456bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!114 &114724229534728884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,8 +314,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  rotSpeed: 0
   dir: 1
+  maxRotation: 0
   player: {fileID: 0}
+  homePos: {x: 0, y: 0, z: 0}
+  buffer: 1
   currentState: 0
 --- !u!135 &135783817073711538
 SphereCollider:
