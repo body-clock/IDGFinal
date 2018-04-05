@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
 
+	//speeds
 	public float speed;
 	public float rotSpeed;
 	
@@ -14,6 +15,10 @@ public class EnemyAI : MonoBehaviour
 
 	public GameObject player;
 
+	public Vector3 homePos;
+	public float buffer = 1f;
+
+	//our different states
 	public enum States
 	{
 		idle,
@@ -22,6 +27,14 @@ public class EnemyAI : MonoBehaviour
 	};
 
 	public States currentState;
+
+	void Awake()
+	{
+		//establish our enemy home position//allows us to spawn and enemy and
+		//he knows where his home is regardless
+		homePos = transform.position;
+		player = GameObject.FindGameObjectWithTag("Player");
+	}
 
 	void Start()
 	{	
@@ -35,6 +48,7 @@ public class EnemyAI : MonoBehaviour
 			
 		CheckDistance();
 
+		//switching between our states
 		switch (currentState)
 		{
 			case States.idle:
@@ -54,6 +68,7 @@ public class EnemyAI : MonoBehaviour
 
 	void OnTriggerEnter(Collider coll)
 	{
+		//bounce between walls
 		if (coll.gameObject.tag == "Wall")
 		{
 			dir *= -1;
@@ -72,9 +87,6 @@ public class EnemyAI : MonoBehaviour
 	
 	void Idle()
 	{
-		
-		Vector3 homePos = new Vector3(-.5f, 2.5f, -18);
-
 		if (transform.position.z != homePos.z)
 		{
 			//go home
@@ -98,10 +110,7 @@ public class EnemyAI : MonoBehaviour
 
 	void CheckDistance()
 	{
-		float dist = Vector3.Distance(player.transform.position, transform.position);
-		
-		Debug.Log(dist);
-		
+		float dist = Vector3.Distance(player.transform.position, transform.position);		
 
 		if (dist > 10f)
 		{
