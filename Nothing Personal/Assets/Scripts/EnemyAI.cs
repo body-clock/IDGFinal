@@ -83,6 +83,8 @@ public class EnemyAI : MonoBehaviour
 		transform.Translate(localPosition.x * Time.deltaTime * speed, 0, localPosition.z * Time.deltaTime * speed);
 		transform.LookAt(player.transform);
 		transform.LookAt(2 * transform.position - player.transform.position);
+		
+		
 	}
 	
 	void Idle()
