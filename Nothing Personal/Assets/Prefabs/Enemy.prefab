@@ -90,8 +90,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413241514468262}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 10, y: 2.75, z: 12}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4664796568411588}
@@ -99,7 +99,7 @@ Transform:
   - {fileID: 4961289330127642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4664796568411588
 Transform:
   m_ObjectHideFlags: 1
@@ -107,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455119398013780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0.47, z: -0.454}
+  m_LocalPosition: {x: -0.15, y: 0.47, z: 0.5}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4173965930278506}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579322816850214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.46}
+  m_LocalPosition: {x: 0, y: 0, z: 3.75}
   m_LocalScale: {x: 2.07, y: 1, z: 2.48}
   m_Children: []
   m_Father: {fileID: 4173965930278506}
@@ -133,7 +133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1044552247396248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.47000003, z: -0.45400047}
+  m_LocalPosition: {x: 0.15, y: 0.47000003, z: 0.5}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_Children: []
   m_Father: {fileID: 4173965930278506}
@@ -275,7 +275,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &65298190650684644
 BoxCollider:
@@ -316,7 +316,7 @@ MonoBehaviour:
   speed: 0
   rotSpeed: 0
   dir: 1
-  maxRotation: 0
+  maxRotation: 200
   player: {fileID: 0}
   homePos: {x: 0, y: 0, z: 0}
   buffer: 1
