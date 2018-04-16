@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 	{	
 		speed = 5f;
 		rotSpeed = 1f;
-		maxRotation = 45f;
+		maxRotation = 200f;
 	}
 	
 	// Update is called once per frame
@@ -78,11 +78,16 @@ public class EnemyAI : MonoBehaviour
 	void Pursuit()
 	{
 		//follow player
-		Vector3 localPosition = player.transform.position - transform.position;
+		/*Vector3 localPosition = player.transform.position - transform.position;
 		localPosition = localPosition.normalized;
 		transform.Translate(localPosition.x * Time.deltaTime * speed, 0, localPosition.z * Time.deltaTime * speed);
 		transform.LookAt(player.transform);
-		transform.LookAt(2 * transform.position - player.transform.position);
+		transform.LookAt(2 * transform.position - player.transform.position);*/
+
+		transform.LookAt(player.transform);
+		transform.Translate(Vector3.forward * speed * Time.deltaTime);
+		
+
 	}
 	
 	void Idle()
@@ -96,8 +101,8 @@ public class EnemyAI : MonoBehaviour
 		else
 		{
 			//rotate in place and move back and forth
-			transform.rotation = Quaternion.Euler(0f, maxRotation * Mathf.Sin(Time.time * rotSpeed), 0f);
-			//stransform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
+			transform.rotation = Quaternion.Euler(0f, -maxRotation * (1 - Mathf.Sin(Time.time * rotSpeed)), 0f);
+			//transform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
 		}
 		
 	}

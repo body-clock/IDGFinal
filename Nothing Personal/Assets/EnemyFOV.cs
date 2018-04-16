@@ -13,7 +13,7 @@ public class EnemyFOV : MonoBehaviour
 		enemyScript = GetComponentInParent<EnemyAI>();
 	}
 
-	void OnTriggerStay(Collider col)
+	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.CompareTag("Player"))
 		{
