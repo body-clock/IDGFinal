@@ -320,6 +320,8 @@ MonoBehaviour:
   player: {fileID: 0}
   homePos: {x: 0, y: 0, z: 0}
   buffer: 1
+  startAngle: 225
+  endAngle: 135
   currentState: 0
 --- !u!135 &135783817073711538
 SphereCollider:

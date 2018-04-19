@@ -18,6 +18,12 @@ public class EnemyAI : MonoBehaviour
 	public Vector3 homePos;
 	public float buffer = 1f;
 
+	public float startAngle;
+	public float endAngle;
+
+	private Vector3 startRotation;
+	private Vector3 endRotation;
+
 	//our different states
 	public enum States
 	{
@@ -34,18 +40,22 @@ public class EnemyAI : MonoBehaviour
 		//he knows where his home is regardless
 		homePos = transform.position;
 		player = GameObject.FindGameObjectWithTag("Player");
+		
+		startRotation = new Vector3(0, startAngle, 0);
+		endRotation = new Vector3(0, endAngle, 0);
 	}
 
 	void Start()
 	{	
 		rotSpeed = 1f;
-		maxRotation = 200f;
+		maxRotation = 0.5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 			
 		CheckDistance();
+		
 
 		//switching between our states
 		switch (currentState)
@@ -77,11 +87,6 @@ public class EnemyAI : MonoBehaviour
 	void Pursuit()
 	{
 		//follow player
-		/*Vector3 localPosition = player.transform.position - transform.position;
-		localPosition = localPosition.normalized;
-		transform.Translate(localPosition.x * Time.deltaTime * speed, 0, localPosition.z * Time.deltaTime * speed);
-		transform.LookAt(player.transform);
-		transform.LookAt(2 * transform.position - player.transform.position);*/
 
 		transform.LookAt(player.transform);
 		transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -100,11 +105,18 @@ public class EnemyAI : MonoBehaviour
 		else
 		{
 			//rotate in place and move back and forth
-			transform.rotation = Quaternion.Euler(0f, -maxRotation * (1 - Mathf.Sin(Time.time * rotSpeed)), 0f);
-			//transform.Translate(new Vector3(1,0,0) * Time.deltaTime * dir * speed, Space.World);
+			RotateInPlace();
 		}
 		
 	}
+
+	void RotateInPlace()
+	{		
+		//PingPong between 0 and 1
+		float time = Mathf.PingPong(Time.time * rotSpeed, 1);
+		transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, time);
+	}
+	
 
 	void Damaging()
 	{

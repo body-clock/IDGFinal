@@ -43,5 +43,6 @@ public class PlayerMovement : MonoBehaviour {
 	public void Restart()
 	{
 		gameObject.transform.position = startPos;
+		HealthManager.instance.health = HealthManager.instance.maxHealth;
 	}
 }
