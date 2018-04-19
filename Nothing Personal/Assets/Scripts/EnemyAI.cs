@@ -38,7 +38,6 @@ public class EnemyAI : MonoBehaviour
 
 	void Start()
 	{	
-		speed = 5f;
 		rotSpeed = 1f;
 		maxRotation = 200f;
 	}
