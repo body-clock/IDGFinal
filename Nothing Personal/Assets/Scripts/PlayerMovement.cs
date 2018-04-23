@@ -7,6 +7,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 7.0f; //movement speed
 	public float tpDistance;
 	public Vector3 startPos;
+
+	public GameObject TPpos;
+
+	public bool hasTeleported = false;
+
+	public static PlayerMovement instance;
 	
 	// Use this for initialization
 	void Start () {
@@ -14,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 		tpDistance = 10;
 
 		startPos = gameObject.transform.position;
+		instance = this;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				transform.Translate(0,0,tpDistance);
+				hasTeleported = true;
 			}
 		}
 	}

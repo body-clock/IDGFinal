@@ -128,9 +128,10 @@ public class EnemyAI : MonoBehaviour
 	{
 		float dist = Vector3.Distance(player.transform.position, transform.position);		
 
-		if (dist > 10f)
+		if (dist > 10f || PlayerMovement.instance.hasTeleported)
 		{
 			currentState = States.idle;
+			PlayerMovement.instance.hasTeleported = false;
 		}
 
 		/*if (dist < 10f)

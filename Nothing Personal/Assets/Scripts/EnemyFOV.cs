@@ -18,7 +18,6 @@ public class EnemyFOV : MonoBehaviour
 		if (col.gameObject.CompareTag("Player"))
 		{
 			enemyScript.currentState = EnemyAI.States.pursuit;
-			Debug.Log("IN FOV");
 		}
 	}
 }
