@@ -31,6 +31,11 @@ public class HealthManager : MonoBehaviour
 			
 			SceneManager.LoadScene("Death");
 		}
+
+		if (health>=100)
+		{
+			health = 100;
+		}
 			
 		
 	}
