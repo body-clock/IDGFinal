@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class ButtonManager : MonoBehaviour
 		if (AreAllButtonsPressed())
 		{
 			Debug.Log("All pressed");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
 	}
 }

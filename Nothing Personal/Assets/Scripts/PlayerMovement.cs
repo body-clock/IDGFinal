@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour {
 	public Vector3 startPos;
 
 	public GameObject TPpos;
+	private GameObject enemyRef;
+	private EnemyAI enemyScript;
 
 	public bool hasTeleported = false;
 
@@ -42,7 +44,12 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				transform.Translate(0,0,tpDistance);
+				enemyRef = col.gameObject.transform.parent.gameObject;
+				enemyScript = enemyRef.GetComponent<EnemyAI>();
+				
+				transform.Translate(0,0,TeleportDistance(enemyRef));
+				
+				enemyScript.currentState = EnemyAI.States.idle;
 				hasTeleported = true;
 			}
 		}
@@ -50,7 +57,17 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Restart()
 	{
+		//reset position and set health back to 100
 		gameObject.transform.position = startPos;
 		HealthManager.instance.health = HealthManager.instance.maxHealth;
+	}
+
+	public float TeleportDistance(GameObject enemy)
+	{
+		//calculate consistent TP distance
+		float dist = Vector3.Distance(transform.position, enemy.transform.position);
+		dist += 3f;
+		return dist;
+
 	}
 }

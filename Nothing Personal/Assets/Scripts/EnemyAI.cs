@@ -5,145 +5,130 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    //speeds
+    public float speed;
 
-	//speeds
-	public float speed;
-	public float rotSpeed;
-	
-	public float dir = 1;
-	public float maxRotation;
+    public float rotSpeed;
 
-	public GameObject player;
+    public float dir = 1;
+    public float maxRotation;
 
-	public Vector3 homePos;
-	public float buffer = 1f;
+    public GameObject player;
 
-	public float startAngle;
-	public float endAngle;
+    public Vector3 homePos;
+    public float buffer = 1f;
 
-	private Vector3 startRotation;
-	private Vector3 endRotation;
+    public float startAngle;
+    public float endAngle;
+    
+    //need to make these relative to the start position
+    private Vector3 startRotation;
+    private Vector3 endRotation;
 
-	//our different states
-	public enum States
-	{
-		idle,
-		pursuit,
-		damaging
-	};
+    //our different states
+    public enum States
+    {
+        idle,
+        pursuit,
+        damaging
+    };
 
-	public States currentState;
+    public States currentState;
 
-	void Awake()
-	{
-		//establish our enemy home position//allows us to spawn and enemy and
-		//he knows where his home is regardless
-		homePos = transform.position;
-		player = GameObject.FindGameObjectWithTag("Player");
-		
-		startRotation = new Vector3(0, startAngle, 0);
-		endRotation = new Vector3(0, endAngle, 0);
-	}
+    void Awake()
+    {
+        //establish our enemy home position//allows us to spawn and enemy and
+        //he knows where his home is regardless
+        homePos = transform.position;
+        player = GameObject.FindGameObjectWithTag("Player");
 
-	void Start()
-	{	
-		rotSpeed = 1f;
-		maxRotation = 0.5f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-			
-		CheckDistance();
-		
+        startRotation = new Vector3(0, startAngle, 0);
+        endRotation = new Vector3(0, endAngle, 0);
+    }
 
-		//switching between our states
-		switch (currentState)
-		{
-			case States.idle:
-				Idle();
-				break;
-			case States.pursuit:
-				Pursuit();
-				break;
-			case States.damaging:
-				Damaging();
-				break;
-			default:
-				throw new ArgumentOutOfRangeException();
-		}
-		
-	}
+    void Start()
+    {
+        rotSpeed = 1f;
+        maxRotation = 0.5f;
+    }
 
-	void OnTriggerEnter(Collider coll)
-	{
-		//bounce between walls
-		if (coll.gameObject.tag == "Wall")
-		{
-			dir *= -1;
-		}
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        CheckDistance();
 
-	void Pursuit()
-	{
-		//follow player
 
-		transform.LookAt(player.transform);
-		transform.Translate(Vector3.forward * speed * Time.deltaTime);
-		
+        //switching between our states
+        switch (currentState)
+        {
+            case States.idle:
+                Idle();
+                break;
+            case States.pursuit:
+                Pursuit();
+                break;
+            case States.damaging:
+                Damaging();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 
-	}
-	
-	void Idle()
-	{
-		if (transform.position.z != homePos.z)
-		{
-			//go home
-			float step = speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, homePos, step);
-		}
-		else
-		{
-			//rotate in place and move back and forth
-			RotateInPlace();
-		}
-		
-	}
+    void Pursuit()
+    {
+        //follow player
+        transform.LookAt(player.transform);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
 
-	void RotateInPlace()
-	{		
-		//PingPong between 0 and 1
-		float time = Mathf.PingPong(Time.time * rotSpeed, 1);
-		transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, time);
-	}
-	
+    void Idle()
+    {
+        if (transform.position.z != homePos.z)
+        {
+            GoHome();
+        }
+        else
+        {
+            //rotate in place and move back and forth
+            RotateInPlace();
+        }
+    }
 
-	void Damaging()
-	{
-		//deal damage to player
-		HealthManager.instance.health-=.3f;
-	}
+    void GoHome()
+    {
+        //go home
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, homePos, step);
+    }
 
-	void CheckDistance()
-	{
-		float dist = Vector3.Distance(player.transform.position, transform.position);		
+    void RotateInPlace()
+    {
+        //PingPong between 0 and 1
+        float time = Mathf.PingPong(Time.time * rotSpeed, 1);
+        transform.localEulerAngles = Vector3.Lerp(startRotation, endRotation, time);
+    }
 
-		if (dist > 10f || PlayerMovement.instance.hasTeleported)
-		{
-			currentState = States.idle;
-			PlayerMovement.instance.hasTeleported = false;
-		}
 
-		/*if (dist < 10f)
-		{
-			currentState = States.pursuit;
-		}*/
+    void Damaging()
+    {
+        //deal damage to player
+        HealthManager.instance.health -= .3f;
+    }
 
-		if (dist < 2f)
-		{
-			currentState = States.damaging;
-		}
-	}
-	
+    void CheckDistance()
+    {
+        float dist = Vector3.Distance(player.transform.position, transform.position);
 
+        if (dist > 10f || PlayerMovement.instance.hasTeleported)
+        {
+            currentState = States.idle;
+            PlayerMovement.instance.hasTeleported = false;
+        }
+
+        if (dist < 2f)
+        {
+            currentState = States.damaging;
+        }
+    }
 }
