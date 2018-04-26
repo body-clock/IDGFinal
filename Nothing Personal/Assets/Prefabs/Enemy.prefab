@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23786827420419286}
   m_Layer: 0
   m_Name: LeftEye
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 23443616255374092}
   m_Layer: 0
   m_Name: RightEye
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

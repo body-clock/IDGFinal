@@ -20,7 +20,8 @@ public class EnemyAI : MonoBehaviour
 
     public float startAngle;
     public float endAngle;
-
+    
+    //need to make these relative to the start position
     private Vector3 startRotation;
     private Vector3 endRotation;
 
@@ -85,9 +86,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (transform.position.z != homePos.z)
         {
-            //go home
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, homePos, step);
+            GoHome();
         }
         else
         {
@@ -96,11 +95,18 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void GoHome()
+    {
+        //go home
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, homePos, step);
+    }
+
     void RotateInPlace()
     {
         //PingPong between 0 and 1
         float time = Mathf.PingPong(Time.time * rotSpeed, 1);
-        transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, time);
+        transform.localEulerAngles = Vector3.Lerp(startRotation, endRotation, time);
     }
 
 
