@@ -42,7 +42,8 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				transform.Translate(0,0,tpDistance);
+				transform.Translate(0,0,TeleportDistance(col.gameObject.transform.parent.gameObject));
+				Debug.Log(col.gameObject);
 				hasTeleported = true;
 			}
 		}
@@ -52,5 +53,15 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		gameObject.transform.position = startPos;
 		HealthManager.instance.health = HealthManager.instance.maxHealth;
+	}
+
+	public float TeleportDistance(GameObject enemy)
+	{
+		float dist = Vector3.Distance(transform.position, enemy.transform.position);
+
+		dist += 10f;
+
+		return dist;
+
 	}
 }
