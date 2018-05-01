@@ -26,6 +26,12 @@ public class EnemyAI : MonoBehaviour
     private Vector3 startRotation;
     private Vector3 endRotation;
 
+    public Material eyesIdle;
+    public Material eyesPursuit;
+
+    public GameObject leftEye;
+    public GameObject rightEye;
+
     //our different states
     public enum States
     {
@@ -83,10 +89,16 @@ public class EnemyAI : MonoBehaviour
         //follow player
         transform.LookAt(player.transform);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        leftEye.GetComponent<MeshRenderer>().material = eyesPursuit;
+        rightEye.GetComponent<MeshRenderer>().material = eyesPursuit;
     }
 
     void Idle()
     {
+        leftEye.GetComponent<MeshRenderer>().material = eyesIdle;
+        rightEye.GetComponent<MeshRenderer>().material = eyesIdle;
+        
         if (transform.position.z != homePos.z)
         {
             GoHome();
@@ -130,7 +142,7 @@ public class EnemyAI : MonoBehaviour
             PlayerMovement.instance.hasTeleported = false;
         }
 
-        if (dist < 1.5f)
+        if (dist < 2f)
         {
             currentState = States.damaging;
         }
