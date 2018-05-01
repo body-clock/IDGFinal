@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -42,8 +43,10 @@ public class EnemyAI : MonoBehaviour
         homePos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
 
-        startRotation = new Vector3(0, startAngle, 0);
-        endRotation = new Vector3(0, endAngle, 0);
+        startRotation = new Vector3(0, transform.eulerAngles.y - 20, 0);
+        endRotation = new Vector3(0, transform.eulerAngles.y + 20, 0);
+
+        
     }
 
     void Start()
@@ -106,7 +109,8 @@ public class EnemyAI : MonoBehaviour
     {
         //PingPong between 0 and 1
         float time = Mathf.PingPong(Time.time * rotSpeed, 1);
-        transform.localEulerAngles = Vector3.Lerp(startRotation, endRotation, time);
+        transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, time);
+        
     }
 
 
