@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class EnemyFOV : MonoBehaviour
 {
-	public GameObject enemy;
+	public GameObject enemyRef;
 	public EnemyAI enemyScript;
 
 	void Awake()
 	{
-		enemy = gameObject.transform.parent.gameObject;
+		enemyRef = gameObject.transform.parent.gameObject;
 		enemyScript = GetComponentInParent<EnemyAI>();
 	}
 
-	void OnTriggerEnter(Collider col)
+	void OnTriggerStay(Collider col)
 	{
 		if (col.gameObject.CompareTag("Player"))
 		{
 			enemyScript.currentState = EnemyAI.States.pursuit;
+			Debug.Log("in FOV");
 		}
 	}
 }

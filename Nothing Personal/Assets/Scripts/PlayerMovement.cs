@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 7.0f; //movement speed
-	public float tpDistance;
 	public Vector3 startPos;
 
-	public GameObject TPpos;
 	private GameObject enemyRef;
 	private EnemyAI enemyScript;
 
@@ -19,8 +17,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Cursor.lockState = CursorLockMode.Locked; //hides cursor when game plays
-		tpDistance = 10;
-
 		startPos = gameObject.transform.position;
 		instance = this;
 	}
@@ -46,6 +42,8 @@ public class PlayerMovement : MonoBehaviour {
 			{
 				enemyRef = col.gameObject.transform.parent.gameObject;
 				enemyScript = enemyRef.GetComponent<EnemyAI>();
+
+				enemyRef.transform.position = enemyRef.transform.position + Vector3.zero;
 				
 				transform.Translate(0,0,TeleportDistance(enemyRef));
 				

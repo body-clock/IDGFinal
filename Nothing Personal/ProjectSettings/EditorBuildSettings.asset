@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/UI/Main.unity
     guid: 0c866b8860b34c742b6ca0414546b343
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_Scenes/Levels/Level1.unity
     guid: 9189502ef55081c479f1f61522292624
   - enabled: 1
     path: Assets/_Scenes/Levels/Level2.unity
     guid: 34c5c018951a8754f83c7d3d5ae7c58d
+  - enabled: 1
+    path: Assets/_Scenes/Levels/Level3.unity
+    guid: d234e9ac659a9c848b06ad2f8b2f16d7
   - enabled: 1
     path: Assets/_Scenes/UI/Death.unity
     guid: 8fce5a8bab86c4d498a143685dbb5768
