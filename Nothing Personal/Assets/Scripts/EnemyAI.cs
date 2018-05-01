@@ -130,7 +130,7 @@ public class EnemyAI : MonoBehaviour
             PlayerMovement.instance.hasTeleported = false;
         }
 
-        if (dist < 2f)
+        if (dist < 1.5f)
         {
             currentState = States.damaging;
         }
